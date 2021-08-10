@@ -8,12 +8,14 @@ app.use(express.urlencoded({ extended: true }));
 const rutasProductos=require('./routes/productos');
 const rutasCarrito=require('./routes/carrito');
 const port= process.env.PORT? process.env.PORT:8080;
-
 app.use('/productos',rutasProductos);
 app.use('/carrito',rutasCarrito);
 if (process.env.NODE_ENV==="prod"){
     app.use(express.static(__dirname+'/public/build'));
     app.get('/',(req,res)=>{
+        res.sendFile(__dirname+'/public/build/'+'index.html')
+    })
+    app.get('*',(req,res)=>{
         res.sendFile(__dirname+'/public/build/'+'index.html')
     })
 }

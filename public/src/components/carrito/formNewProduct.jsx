@@ -29,7 +29,6 @@ export default function Productnew(){
       })
       }
      const respuesta = await axios.post("/carrito/agregar/"+ body.id);
-     console.log(respuesta.status);
      if (respuesta.status === 200) {
         history.push("/carrito/saved/"+respuesta.data.id+"/"+respuesta.data.producto.nombre); 
         
